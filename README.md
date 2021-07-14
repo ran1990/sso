@@ -52,7 +52,7 @@ When he logs out (on either of the sites), he's logged out for both.
 
 Install this library through composer
 
-    composer require jasny/sso
+    composer require life2016/yii2-sso
 
 ## Demo
 
