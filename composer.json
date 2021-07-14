@@ -1,7 +1,7 @@
 {
     "name": "life2016/yii2-sso",
     "description": "Simple Single Sign-On",
-    "keywords": ["sso", "auth"],
+    "keywords": ["sso", "auth", "yii2-sso"],
     "license": "MIT",
     "homepage": "https://github.com/ran1990/sso/wiki",
     "authors": [
