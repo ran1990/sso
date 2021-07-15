@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Jasny\SSO\Broker;
 
+use function GuzzleHttp\Psr7\str;
+
 /**
  * Wrapper for cURL.
  *
@@ -40,7 +42,7 @@ class Curl
         if ($ch === false) {
             throw new \RuntimeException("Failed to initialize a cURL session");
         }
-
+        
         if ($data !== [] && $data !== '') {
             $post = is_string($data) ? $data : http_build_query($data);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
@@ -59,6 +61,6 @@ class Curl
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE) ?? 'text/html';
 
-        return ['httpCode' => $httpCode, 'contentType' => $contentType, 'body' => $responseBody];
+        return ['httpCode' => $httpCode, 'contentType' => strval($contentType), 'body' => $responseBody];
     }
 }

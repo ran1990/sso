@@ -59,7 +59,8 @@ class GlobalSession implements SessionInterface
     public function resume(string $id): void
     {
         session_id($id);
-        $started = session_start($this->options);
+        $started = session_status() !== PHP_SESSION_ACTIVE
+            ? session_start($this->options)  : true;;
 
         if (!$started) {
             $err = error_get_last() ?? ['message' => 'Failed to start session'];

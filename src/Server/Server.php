@@ -8,7 +8,7 @@ use Jasny\Immutable;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Psr\SimpleCache\CacheInterface;
+use \yii\caching\CacheInterface;
 
 /**
  * Single sign-on server.
@@ -95,7 +95,7 @@ class Server
 
         $sessionId = $this->cache->get($this->getCacheKey($brokerId, $token));
 
-        if ($sessionId === null) {
+        if (empty($sessionId)) {
             $this->logger->warning(
                 "Bearer token isn't attached to a client session",
                 ['broker' => $brokerId, 'token' => $token]
@@ -273,7 +273,7 @@ class Server
         $key = $this->getCacheKey($brokerId, $token);
         $attached = $this->cache->get($key);
 
-        if ($attached !== null && $attached !== $this->session->getId()) {
+        if (!empty($attached) && $attached !== $this->session->getId()) {
             $this->logger->warning("Token is already attached", [
                 'broker' => $brokerId,
                 'token' => $token,
