@@ -32,7 +32,7 @@ class Cookies implements \ArrayAccess
      * @param string $domain
      * @param bool   $secure
      */
-    public function __construct(int $ttl = 3600, string $path = '', string $domain = '', bool $secure = false)
+    public function __construct(int $ttl = 3600, string $path = '/', string $domain = '', bool $secure = false)
     {
         $this->ttl = $ttl;
         $this->path = $path;
