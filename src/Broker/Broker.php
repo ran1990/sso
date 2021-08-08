@@ -161,6 +161,11 @@ class Broker
         return $this->verificationCode;
     }
 
+    public function existTokenAndVerificationCode(): bool
+    {
+        return  $this->getToken() && $this->getVerificationCode();
+    }
+
     /**
      * Get the cookie name.
      * The broker name is part of the cookie name. This resolves issues when multiple brokers are on the same domain.
