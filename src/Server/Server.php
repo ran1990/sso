@@ -41,6 +41,7 @@ class Server
      */
     protected $session;
 
+    public $lifetime = null;//有效期，秒
     /**
      * Class constructor.
      *
@@ -251,7 +252,7 @@ class Server
         $this->assertNotAttached($brokerId, $token);
 
         $key = $this->getCacheKey($brokerId, $token);
-        $cached = $this->cache->set($key, $this->session->getId());
+        $cached = $this->cache->set($key, $this->session->getId(), $this->lifetime);
 
         $info = ['broker' => $brokerId, 'token' => $token, 'session' => $this->session->getId()];
 
