@@ -226,7 +226,7 @@ class Server
         $domains = ($this->getBrokerInfo)($brokerId)['domains'] ?? [];
         $host = parse_url($url, PHP_URL_HOST);
 
-        if (!in_array($host, $domains, true)) {
+        if (!in_array($host, $domains, true) && current($domains) != '*') {
             $this->logger->warning(
                 "Domain of $type is not allowed for broker",
                 [$type => $url, 'broker' => $brokerId] + ($token !== null ? ['token' => $token] : [])
